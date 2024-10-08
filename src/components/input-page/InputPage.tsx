@@ -45,14 +45,7 @@ export const InputPage = observer(() => {
                 throw new Error('Network response was not ok');
             }
 
-            const result = {
-                paidPrice: [],
-                    valuation: {
-                    desc: 'The outcome of the model why it thinks the valuation.price is correct,The outcome of the model why it thinks the valuation.price is correctThe outcome of the model why it thinks the valuation.price is correct',
-                        price: 100000
-                }
-            };
-
+            const result = await response.json();
 
             propertyValuationStore.updatePropertyValuation(result);
 

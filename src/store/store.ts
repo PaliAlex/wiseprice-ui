@@ -3,26 +3,7 @@ import {IPropertyValuation} from "../common/models/ValuationResponse";
 import {formatDate} from "../common/utils/formatDate";
 
 class PropertyValuationStore {
-    propertyValuation: IPropertyValuation | null = {
-        paidPrice: [
-            {
-            date: '2024-01-06',
-            price: 50000
-            },
-            {
-                date: '2024-01-07',
-                price: 60000
-            },
-            {
-                date: '2024-01-08',
-                price: 40000
-            }
-        ],
-        valuation: {
-            desc: 'The outcome of the model why it thinks the valuation.price is correct,The outcome of the model why it thinks the valuation.price is correctThe outcome of the model why it thinks the valuation.price is correct',
-            price: 100000
-        }
-    }
+    propertyValuation: IPropertyValuation | null = null;
 
     constructor() {
         makeAutoObservable(this);
