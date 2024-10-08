@@ -16,7 +16,7 @@ export const SelectComponent = ({options, label, register, error}: IPropsSelectC
     return (
         <SelectComponentContainer>
             <FormControl fullWidth margin="normal">
-                <InputLabel id="demo-simple-select-label">Select an Option</InputLabel>
+                <InputLabel id="demo-simple-select-label">Select property type</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"

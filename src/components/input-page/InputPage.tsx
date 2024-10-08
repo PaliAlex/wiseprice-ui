@@ -1,11 +1,11 @@
 import {
-    ButtonStyled,
     FormContainer,
     InfoIconStyled,
     InfoWrapper,
     InputWrapper,
     TextContainer,
-    TextFieldStyled
+    TextFieldStyled,
+    ButtonStyled
 } from "./styles";
 import {SelectComponent} from "../common/select/SelectComponent";
 import {useForm} from "react-hook-form";
@@ -13,13 +13,16 @@ import {PropertyType} from "../../common/models/PropertyType";
 import {useState} from "react";
 import {Loader} from "../common/loader/Loader";
 import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react-lite";
+import propertyValuationStore from "../../store/store";
+import {Button} from "@mui/material";
 
 export interface IForm {
     postcode: string;
     type: string;
 }
 
-export const InputPage = () => {
+export const InputPage = observer(() => {
     const { register, handleSubmit, formState: { errors } } = useForm<IForm>();
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -27,11 +30,13 @@ export const InputPage = () => {
     const onSubmit = async (data: IForm) => {
         console.log('Submitted data:', data);
         setIsLoading(true);
+
         try {
             const response = await fetch('https://wiseprice-app-et34g.ondigitalocean.app/api/v1/property/valuation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(data),
             });
@@ -40,7 +45,17 @@ export const InputPage = () => {
                 throw new Error('Network response was not ok');
             }
 
-            const result = await response.json();
+            const result = {
+                paidPrice: [],
+                    valuation: {
+                    desc: 'The outcome of the model why it thinks the valuation.price is correct,The outcome of the model why it thinks the valuation.price is correctThe outcome of the model why it thinks the valuation.price is correct',
+                        price: 100000
+                }
+            };
+
+
+            propertyValuationStore.updatePropertyValuation(result);
+
             navigate('/valuation-page');
             console.log('Response data:', result);
         } catch (error) {
@@ -61,9 +76,16 @@ export const InputPage = () => {
                         <TextFieldStyled
                             error={!!errors.postcode}
                             id="outlined-basic"
-                            label="Outlined"
+                            label="Enter your postcode"
                             variant="outlined"
-                            {...register('postcode', { required: 'postcode is required' })}
+                            {...register('postcode', {
+                                required: 'Postcode is required',
+                                pattern: {
+                                    value: /^(GIR 0AA|[A-Z]{1,2}[0-9][0-9]?[A-Z]?\s?[0-9][A-Z]{2})$/i,
+                                    message: 'Invalid postcode format'
+                                }
+                            })}
+                            helperText={errors?.postcode && errors?.postcode.message}
                         />
 
                         <SelectComponent
@@ -90,4 +112,5 @@ export const InputPage = () => {
             <Loader isLoading={isLoading}/>
         </>
     )
-}
+});
+
