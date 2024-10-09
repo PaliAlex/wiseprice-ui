@@ -25,7 +25,7 @@ class PropertyValuationStore {
                     ...it,
                     date: formatDateToChart(it.date)
                 })
-            }),
+            }).reverse(),
             paidPrice: propertyValuation.paidPrice.map(it => {
                 return({
                     price: it.price,
