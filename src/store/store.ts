@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import {IPropertyValuation} from "../common/models/ValuationResponse";
-import {formatDate} from "../common/utils/formatDate";
+import {formatDate, formatDateToChart} from "../common/utils/formatDate";
 
 class PropertyValuationStore {
     propertyValuation: IPropertyValuation | null = null;
@@ -20,6 +20,12 @@ class PropertyValuationStore {
     private mapPropertyValuation(propertyValuation: IPropertyValuation): IPropertyValuation {
         return ({
             valuation: propertyValuation.valuation,
+            hpiIndex: propertyValuation.hpiIndex.map(it => {
+                return({
+                    ...it,
+                    date: formatDateToChart(it.date)
+                })
+            }),
             paidPrice: propertyValuation.paidPrice.map(it => {
                 return({
                     price: it.price,

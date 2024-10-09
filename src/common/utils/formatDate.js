@@ -3,3 +3,9 @@ export const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', options);
 }
+
+export const formatDateToChart = (dateString) => {
+    const options = { year: 'numeric', month: 'short' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', options);
+}

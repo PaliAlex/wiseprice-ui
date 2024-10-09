@@ -22,6 +22,7 @@ export const PriceWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
+  margin-top: 10px;
   background-color: #3a4146;
   justify-content: center;
   padding: 24px 16px;
@@ -30,7 +31,7 @@ export const LabelStyled = styled.div`
   font-family: neueSingular-D, sans-serif;
   font-size: 1.25rem;
   color: #E3DDD6FF;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 
 export const ValueStyled = styled.div`
@@ -46,10 +47,11 @@ export const DescriptionStyled = styled.div`
   color: #ffffff;
 `;
 
-export const HistoryLabel = styled.h2`
+export const ChapterLabel = styled.h2`
   text-align: center;
   font-family: neueSingular-D, sans-serif;
   margin-bottom: 15px;
+  margin-top: 0;
 `;
 export const ButtonWrapper = styled.div`
     width: 100%;

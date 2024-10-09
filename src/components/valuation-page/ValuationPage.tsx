@@ -1,6 +1,6 @@
 import {
     ButtonWrapper,
-    DescriptionStyled, HistoryLabel,
+    DescriptionStyled, ChapterLabel,
     LabelStyled,
     PaidPriceWrapper,
     PriceWrapper,
@@ -13,6 +13,8 @@ import {HistoryTable} from "./history-table/Historytable";
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {LeftArrow} from "../../common/icons/LeftArrow";
+import {AveragePriceChart} from "./chart/AveragePriceChart";
+import {formatToGBP} from "../../common/utils/formatCurrency";
 
 
 export const ValuationPage = observer(() => {
@@ -37,7 +39,7 @@ export const ValuationPage = observer(() => {
                             Valuation price
                         </LabelStyled>
                         <ValueStyled>
-                            £{propertyValuation?.valuation.price}
+                            {formatToGBP(propertyValuation?.valuation.price)}
                         </ValueStyled>
                     </PriceWrapper>
                     <PriceWrapper>
@@ -50,12 +52,13 @@ export const ValuationPage = observer(() => {
                     </PriceWrapper>
                 </ValuationPart>
                 <PaidPriceWrapper>
-                    <HistoryLabel>
+                    <ChapterLabel>
                         Price history
-                    </HistoryLabel>
+                    </ChapterLabel>
                     <HistoryTable array={propertyValuation?.paidPrice} />
                 </PaidPriceWrapper>
             </ValuationPageContainer>
+            <AveragePriceChart />
         </>
     )
 });

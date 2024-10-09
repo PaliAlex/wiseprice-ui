@@ -1,6 +1,7 @@
 import {Content, EmptyContentLabel, EmptyContentWrapper, Header, HeaderItem, TableWrapper} from "./styles";
 import {IPaidPrice} from "../../../common/models/ValuationResponse";
 import ExclamationSign from "../../../common/icons/ExclamationSign";
+import {formatToGBP} from "../../../common/utils/formatCurrency";
 
 interface IHistoryTable {
     array?: IPaidPrice[]
@@ -20,7 +21,7 @@ export const HistoryTable = ({array}: IHistoryTable) => {
                 !isEmptyContent && array.map(it => (
                     <Content>
                         <HeaderItem>{it.date}</HeaderItem>
-                        <HeaderItem>£{it.price}</HeaderItem>
+                        <HeaderItem>{formatToGBP(it.price)}</HeaderItem>
                     </Content>
                 ))
             }
@@ -28,7 +29,7 @@ export const HistoryTable = ({array}: IHistoryTable) => {
     )
 };
 
-const EmptyContent = () => {
+export const EmptyContent = () => {
     return(
         <EmptyContentWrapper>
             <ExclamationSign />
