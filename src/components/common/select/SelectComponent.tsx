@@ -4,9 +4,10 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {SelectComponentContainer} from "./styles";
 import {InputLabel} from "@mui/material";
+import {IOption} from "../../../common/models/IOption";
 
 interface IPropsSelectComponent {
-    options: string[],
+    options: IOption[],
     label: string,
     register: any,
     error: boolean
@@ -26,8 +27,8 @@ export const SelectComponent = ({options, label, register, error}: IPropsSelectC
                     error={error}
                 >
                     {options.map((option) => (
-                        <MenuItem key={option} value={option}>
-                            {option}
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
                         </MenuItem>
                     ))}
                 </Select>

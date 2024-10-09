@@ -15,7 +15,8 @@ import {Loader} from "../common/loader/Loader";
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 import propertyValuationStore from "../../store/store";
-import {Button} from "@mui/material";
+import {IOption} from "../../common/models/IOption";
+import {propertyTypeOptions} from "./constants";
 
 export interface IForm {
     postcode: string;
@@ -59,8 +60,6 @@ export const InputPage = observer(() => {
         }
     };
 
-    const propertyTypeValues: string[] = Object.values(PropertyType);
-
     return(
         <>
             <FormContainer>
@@ -82,7 +81,7 @@ export const InputPage = observer(() => {
                         />
 
                         <SelectComponent
-                            options={propertyTypeValues}
+                            options={propertyTypeOptions}
                             label={'Select property type'}
                             register={register}
                             error={!!errors.type}

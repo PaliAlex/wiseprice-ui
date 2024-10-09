@@ -12,6 +12,7 @@ import propertyValuationStore from "../../store/store";
 import {HistoryTable} from "./history-table/Historytable";
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {LeftArrow} from "../../common/icons/LeftArrow";
 
 
 export const ValuationPage = observer(() => {
@@ -24,6 +25,11 @@ export const ValuationPage = observer(() => {
     }
     return(
         <>
+            <ButtonWrapper>
+                <Button variant="text" size="large" onClick={onClick}>
+                    <LeftArrow /> Go back to calculating
+                </Button>
+            </ButtonWrapper>
             <ValuationPageContainer>
                 <ValuationPart>
                     <PriceWrapper>
@@ -50,11 +56,6 @@ export const ValuationPage = observer(() => {
                     <HistoryTable array={propertyValuation?.paidPrice} />
                 </PaidPriceWrapper>
             </ValuationPageContainer>
-            <ButtonWrapper>
-                <Button variant="outlined" size="large" onClick={onClick}>
-                    Go back to calculating
-                </Button>
-            </ButtonWrapper>
         </>
     )
 });

@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import {Button} from "@mui/material";
 
 export const ValuationPageContainer = styled.div`
   display: flex;
   
   width: 900px;
-  margin-top: 40px;
+  margin-top: 25px;
 `;
 
 export const ValuationPart = styled.div`
@@ -53,5 +52,7 @@ export const HistoryLabel = styled.h2`
   margin-bottom: 15px;
 `;
 export const ButtonWrapper = styled.div`
-    margin-top: 30px;
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 15px;
 `;
